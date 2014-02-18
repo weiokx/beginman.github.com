@@ -1,0 +1,34 @@
+markdown:         rdiscount
+pygments:         true
+paginate:         8
+
+title:            BeginMan的博客
+url:              http://beginman.github.io
+feed:             /atom.xml
+author:
+    name:         BeginMan
+    email:        pythonsuper@gmail.com
+    description:  "The one theme is another web theme design by PIZn."
+
+about:            "I am PIZn.I love all kinds of design, attention to the Internet dynamic, dedicated web front development, learn UI and UED."
+follow:
+    email:        pythonsuper@gmail.com
+    github:       https://github.com/BeginMan
+    twitter:      http://www.twitter.com/BeginMan
+    facebook:     http://facebook.com/BeginMan
+description:      Laern more
+
+indexContent:     true
+imageLink:        http://www.pizn.net/static/images/20121109Monutain.jpg
+
+
+style:            /css/style.css
+blogName:         BeginMan
+blogDesc:         A pythoner love IT and life.
+favicon:          /favicon.ico
+theme:            default
+
+disqus:           BeginMan
+
+copyright:        Copyright © 2014 BeginMan All rights reserved.
+test:             ok
