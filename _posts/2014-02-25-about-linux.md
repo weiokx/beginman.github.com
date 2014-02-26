@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 关于Linux你不得不知道的事情
-categories: Jekyll
+categories: linux
 ---
 ##一.什么是开源
 关于Linux不得不想到一个词就是“开源”，那到底什么是开源呢？
