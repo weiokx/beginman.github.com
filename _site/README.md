@@ -1,3 +1,11 @@
-###主题介绍
+#主题介绍
 
-<a href="http://www.pizn.net/14-11-2012/theone-blog-theme/" title="theOne">Jekyll 博客主题 theOne</a>
+BeginMan's blog.
+
+**Other blog：**
+
+1、[博客园](http://www.cnblogs.com/BeginMan/)
+
+2、[Weibo](http://weibo.com/BeginMan)
+
+![](http://service.t.sina.com.cn/widget/qmd/2530590633/fe5f84f0/1.png)

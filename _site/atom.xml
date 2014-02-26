@@ -2,15 +2,190 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
  
    <title>BeginMan的博客</title>
-   <link href="http://beginman.github.io//atom.xml" rel="self" type="application/atom+xml"/>
-   <link href="http://beginman.github.io/" rel="alternate" type="text/html" />
-   <updated>2014-02-17T18:39:28+08:00</updated>
-   <id>http://beginman.github.io/</id>
+   <link href="http://beginman.github.io/atom.xml" rel="self" type="application/atom+xml"/>
+   <link href="http://beginman.github.io" rel="alternate" type="text/html" />
+   <updated>2014-02-26T14:35:33+08:00</updated>
+   <id>http://beginman.github.io</id>
    <author>
      <name>BeginMan</name>
      <email>pythonsuper@gmail.com</email>
    </author>
 
+   
+   <entry>
+     <title>Git常见错误汇总</title>
+     <link href="http://beginman.cn/jekyll/2014/02/25/common-error-for-git.html"/>
+     <updated>2014-02-25T00:00:00+08:00</updated>
+     <id>http://beginman.cn/jekyll/2014/02/25/common-error-for-git</id>
+     <content type="html">&lt;h2&gt;一.无法推送&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;beginman@beginman:～/beginman.github.com$ git push origin master
+To git@github.com:BeginMan/beginman.github.com.git
+ ! [rejected]        master -&amp;gt; master (non-fast-forward)
+error: 无法推送一些引用到 'git@github.com:BeginMan/beginman.github.com.git'
+提示：更新被拒绝，因为您当前分支的最新提交落后于其对应的远程分支。
+提示：再次推送前，先与远程变更合并（如 'git pull'）。详见
+提示：'git push --help' 中的 'Note about fast-forwards' 小节。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这是由于用户信息发生了变化，解决办法：&lt;/p&gt;
+
+&lt;p&gt;1/重新更新一般&lt;/p&gt;
+
+&lt;p&gt;2/强制提交，
+    git push origin master -f&lt;/p&gt;
+</content>
+   </entry>
+   
+   <entry>
+     <title>关于Linux你不得不知道的事情</title>
+     <link href="http://beginman.cn/linux/2014/02/25/about-linux.html"/>
+     <updated>2014-02-25T00:00:00+08:00</updated>
+     <id>http://beginman.cn/linux/2014/02/25/about-linux</id>
+     <content type="html">&lt;h2&gt;一.什么是开源&lt;/h2&gt;
+
+&lt;p&gt;关于Linux不得不想到一个词就是“开源”，那到底什么是开源呢？
+&lt;a href=&quot;http://zh.wikipedia.org/wiki/%E5%BC%80%E6%BA%90&quot;&gt;&lt;strong&gt;Wiki&lt;/strong&gt;&lt;/a&gt; 里讲的很明白，不仅是开放源代码这么狭义的理解，更是一种思想和精神。&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;一些人将开放源代码认为是一种哲学思想，另一些人则把它当成一种实用主义。&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;如果还是对“开源”有着误解：可以阅读这篇博客&lt;a href=&quot;http://www.cnblogs.com/rupeng/p/3139537.html&quot;&gt;“开源”是什么，能吃吗？&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;二.开源和linux相关名词&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.linux.org/images/linux_org.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如：GUN/GPL/FSF/Copyleft/OSS/FS&lt;/p&gt;
+
+&lt;p&gt;参考&lt;a href=&quot;http://linuxme.blog.51cto.com/1850814/346363&quot;&gt;linux历史发展&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.gnu.org/copyleft/&quot;&gt;GUN Operating System&lt;/a&gt;&lt;/p&gt;
+</content>
+   </entry>
+   
+   <entry>
+     <title>关于Github访问慢，不能加载css、js解决办法</title>
+     <link href="http://beginman.cn/jekyll/2014/02/20/pool-github.html"/>
+     <updated>2014-02-20T00:00:00+08:00</updated>
+     <id>http://beginman.cn/jekyll/2014/02/20/pool-github</id>
+     <content type="html">&lt;p&gt;这篇Blog参考性的总结&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;方法如下：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;首先要修改host，推荐用批处理方法：&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;1、把下面的代码写入txt文件，并另存为“hosts.bat”文件(这里注意一下，如果有些朋友的电脑是不显示文件后缀的，这样直接命名没效，要在文件夹选项中显示常用文件的后缀)。文件内容如下:&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;@echo off
+del %systemroot%\system32\drivers\etc\hosts
+echo 127.0.0.1 www.test.com&amp;gt;&amp;gt;%systemroot%\system32\drivers\etc\hosts
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;&lt;p&gt;通过 www.ipaddress.com  这个网站查询github.global.ssl.fastly.net的IP地址，然后在hosts中增加一条。&lt;/p&gt;
+
+&lt;p&gt;2、把里面的IP和域名更改成自己想要的，如github对应的：&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;#fix github cdn problem because of GFW
+185.31.17.184  github.global.ssl.fastly.net
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;&lt;p&gt;3、右键点击”hosts.bat”文件，选择以管理员权限运行。即可&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;参考：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.cnblogs.com/fanyong/p/3489800.html&quot;&gt;http://www.cnblogs.com/fanyong/p/3489800.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jingyan.baidu.com/article/9faa72317903f1473c28cb01.html&quot;&gt;http://jingyan.baidu.com/article/9faa72317903f1473c28cb01.html&lt;/a&gt;&lt;/p&gt;
+</content>
+   </entry>
+   
+   <entry>
+     <title>Ubuntu使用及学习资源</title>
+     <link href="http://beginman.cn/jekyll/2014/02/19/Ubuntu.html"/>
+     <updated>2014-02-19T00:00:00+08:00</updated>
+     <id>http://beginman.cn/jekyll/2014/02/19/Ubuntu</id>
+     <content type="html">&lt;p&gt;2014年伊始，把工作环境从win转移到了Linux,安装了一个具有中国特色的&lt;a href=&quot;http://www.ubuntukylin.com/&quot;&gt;&lt;strong&gt;Ubuntuyklin&lt;/strong&gt;&lt;/a&gt;,也就是Ubuntu的中国版。虽然Ubuntukylin 13.04理论上还处于Beta阶段，还不能正式进入生产使用环境。但是，Ubuntukylin 13.04绚丽的界面，以及逐渐加入的中国本土化元素，让这款操作系统愈来愈受到国内圈子的喜爱。后续的Ubuntukylin 13.10还会加入淘宝Dash搜索、百度Dash地图、在线支付助手插件和实时航班和列车信息，其中国内银行业务的支持将会大大推进Ubuntukylin进入实用的进程。&lt;/p&gt;
+
+&lt;p&gt;Ubuntuylin更加人性化，能下载更多国内软件如：&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://www.ubuntukylin.com/applications/showimg.php?lang=cn&amp;amp;id=18&quot;&gt;Dash中文音乐搜索&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.ubuntukylin.com/upload/201309/thumb_dis/deshbig2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://www.ubuntukylin.com/applications/showimg.php?lang=cn&amp;amp;id=15&quot;&gt;企业级通讯工具（莲）&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.ubuntukylin.com/upload/201310/thumb_dis/lianbig(1&quot; alt=&quot;&quot; /&gt;.png)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://www.ubuntukylin.com/applications/showimg.php?lang=cn&amp;amp;id=14&quot;&gt;优客助手&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;(专为UbuntuKylin用户打造的“系统级管理与配置工具”，基于Qt/QML、Python实现，让您的桌面更加流畅、易用而富有个性！)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.ubuntukylin.com/upload/201312/thumb/new-uk.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://www.ubuntukylin.com/applications/showimg.php?lang=cn&amp;amp;id=19&quot;&gt;金山WPS&lt;/a&gt;:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.ubuntukylin.com/upload/201309/thumb_dis/wpsbig2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&quot;&lt;a href=&quot;http://www.ubuntukylin.com/applications/showimg.php?lang=cn&amp;amp;id=20&quot;&gt;Fcitx&quot;输入法面板:&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.ubuntukylin.com/upload/201309/thumb_dis/qierbig.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.ubuntukylin.com/applications/showimg.php?lang=cn&amp;amp;id=23&quot;&gt;&lt;strong&gt;wine Q Q&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.ubuntukylin.com/upload/201309/thumb/qq.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://www.ubuntukylin.com/applications/showimg.php?lang=cn&amp;amp;id=24&quot;&gt;PPS 网络电视&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.ubuntukylin.com/upload/201309/thumb_dis/PPSbig.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;等等。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;2014这一年要全面熟悉Linux，特制定学习资料如下：&lt;/p&gt;
+
+&lt;p&gt;1、《Linux 操作系统教程》[主]&lt;/p&gt;
+
+&lt;p&gt;2、《鸟哥的Linux私房菜》[主]&lt;/p&gt;
+
+&lt;p&gt;3、&lt;a href=&quot;http://wiki.ubuntu.org.cn/%E9%A6%96%E9%A1%B5&quot;&gt;Ubuntu中文Wiki（辅）&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;4、&lt;a href=&quot;http://forum.ubuntu.org.cn/&quot;&gt;Ubuntu论坛（辅）&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;5、&lt;a href=&quot;http://linux.chinaunix.net/&quot;&gt;Linux时代（辅）&lt;/a&gt;&lt;/p&gt;
+</content>
+   </entry>
+   
+   <entry>
+     <title>关于Github创建blog并绑定域名的事情</title>
+     <link href="http://beginman.cn/jekyll/2014/02/19/Base-on-Github-to-binding-domain.html"/>
+     <updated>2014-02-19T00:00:00+08:00</updated>
+     <id>http://beginman.cn/jekyll/2014/02/19/Base-on-Github-to-binding-domain</id>
+     <content type="html">&lt;p&gt;如何做，我想这点网上一大堆的教程，这里想说的几点如下：&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1.如何快速高效地学习新知识&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;学习新的知识时不要急于求成，首先要了解，然后确定自己的学习框架，接着制定自己的学习路线和学习计划，最后就是&lt;strong&gt;思考性、总结性、创新性、踏实性&lt;/strong&gt;的进行学习,到最后就是小结了。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2.一切以官网为主&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;github搭建Blog，可以在github help里面找，自己非要大费周章去Google，由于他人提供的教程不是最新，且github改版了几次，所以最好耐心点去一点点看它的help.&lt;/p&gt;
+
+&lt;p&gt;比如：现在要访问 &lt;em&gt;用户名.github.io&lt;/em&gt; 作为github为我们提供的二级域名。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;3.细心点别犯低级错误&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;之所以我的域名没解析出来就是因为把CNAME 写成了 CANME.这是低级错误，却让我困惑了好几天，不得不说明做人一定要用心、细心。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;推荐阅读：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://help.github.com/articles/setting-up-a-custom-domain-with-pages&quot;&gt;Setting up a custom domain with Pages&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.worldhello.net/gotgithub/03-project-hosting/050-homepage.html&quot;&gt;GotGithub&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://yanping.me/cn/blog/2011/12/04/github-pages-domain/&quot;&gt;浅谈github页面域名绑定&lt;/a&gt;&lt;/p&gt;
+</content>
+   </entry>
    
    <entry>
      <title>Jekyll的安装</title>
@@ -40,11 +215,11 @@ Fetching: liquid-2.5.5.gem (100%)
 Successfully installed liquid-2.5.5
 Fetching: fast-stemmer-1.0.2.gem (100%)
 ERROR:  Error installing jekyll:
-The &#39;fast-stemmer&#39; native gem requires installed build tools.
+The 'fast-stemmer' native gem requires installed build tools.
 
 Please update your PATH to include build tools or download the DevKit
-from &#39;http://rubyinstaller.org/downloads&#39; and follow the instructions
-at &#39;http://github.com/oneclick/rubyinstaller/wiki/Development-Kit&#39;
+from 'http://rubyinstaller.org/downloads' and follow the instructions
+at 'http://github.com/oneclick/rubyinstaller/wiki/Development-Kit'
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;还是报错了，提示我们下载安装&quot;DevKit&quot;，这里下载安装即可，然后又提示我们在http://github.com/oneclick/rubyinstaller/wiki/Development-Kit找答案。&lt;/p&gt;
@@ -59,8 +234,8 @@ at &#39;http://github.com/oneclick/rubyinstaller/wiki/Development-Kit&#39;
 
 &lt;pre&gt;&lt;code&gt;# This configuration file contains the absolute path locations of all
 # installed Rubies to be enhanced to work with the DevKit. This config
-# file is generated by the &#39;ruby dk.rb init&#39; step and may be modified
-# before running the &#39;ruby dk.rb install&#39; step. To include any installed
+# file is generated by the 'ruby dk.rb init' step and may be modified
+# before running the 'ruby dk.rb install' step. To include any installed
 # Rubies that were not automagically discovered, simply add a line below
 # the triple hyphens with the absolute path to the Ruby root directory.
 #
@@ -79,8 +254,8 @@ at &#39;http://github.com/oneclick/rubyinstaller/wiki/Development-Kit&#39;
 &lt;p&gt;然后再试 ruby dk.rb install.如下提示：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$ ruby dk.rb install
-[INFO] Updating convenience notice gem override for &#39;C:/Ruby200-x64&#39;
-[INFO] Installing &#39;C:/Ruby200-x64/lib/ruby/site_ruby/devkit.rb&#39;
+[INFO] Updating convenience notice gem override for 'C:/Ruby200-x64'
+[INFO] Installing 'C:/Ruby200-x64/lib/ruby/site_ruby/devkit.rb'
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;那么就说明安装成功了，然后就安装jekyll吧&lt;/p&gt;
@@ -175,7 +350,7 @@ Server address: http://0.0.0.0:4000
 &lt;p&gt;&lt;em&gt;参考：&lt;/em&gt;
 1.&lt;a href=&quot;http://www.cnblogs.com/hutaoer/archive/2013/02/06/3078873.html&quot;&gt;win7下安装jekyll——在github上创建自己的博客&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;2.&lt;a href=&quot;http://ben-hu.iteye.com/blog/1473391&quot;&gt;Invalid configuration. Please fix &#39;config.yml.&#39;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;2.&lt;a href=&quot;http://ben-hu.iteye.com/blog/1473391&quot;&gt;Invalid configuration. Please fix 'config.yml.'&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;3.&lt;a href=&quot;http://blog.fens.me/jekyll-bootstarp-github/&quot;&gt;Jekyll在github上构建免费的Web应用&lt;/a&gt;&lt;/p&gt;
 
@@ -192,11 +367,11 @@ Server address: http://0.0.0.0:4000
      <id>http://beginman.cn/2012/11/13/hello-world</id>
      <content type="html">&lt;h3&gt;&quot;IMG&quot;标签：&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://beginman.github.io//images/yujinxiang.jpeg&quot; alt=&quot;thumb&quot; &gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://beginman.github.io/images/yujinxiang.jpeg&quot; alt=&quot;thumb&quot; &gt;&lt;/p&gt;
 
 &lt;h3&gt;&quot;BLACKQUERY&quot;标签：&lt;/h3&gt;
 
-&lt;blockquote&gt;&lt;p&gt;Your time is limited, so don&#39;t waste it living someone else&#39;s life.…Don&#39;t let the noise of others&#39; opinions drown out your own inner voice.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote&gt;&lt;p&gt;Your time is limited, so don't waste it living someone else's life.…Don't let the noise of others' opinions drown out your own inner voice.&lt;/p&gt;&lt;/blockquote&gt;
 
 &lt;h3&gt;&quot;H&quot;标签：&lt;/h3&gt;
 

@@ -32,3 +32,4 @@ disqus:           BeginMan
 
 copyright:        Copyleft © 2014 BeginMan All rights reserved.
 test:             ok
+safe:			  false
