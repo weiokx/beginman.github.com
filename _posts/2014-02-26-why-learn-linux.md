@@ -45,11 +45,8 @@ category: linux
 
 ##二、该如何学习Linux
 
-学习Linux往往都有一些学习路线，下图就是在网上搜到的。
+那么我该如何学习它呢？这里我采取了以下博客的推荐。[献给初学者：谈谈如何学习Linux操作系统](http://ixdba.blog.51cto.com/2895551/569329)
 
-![](http://www.phpernote.com/uploadfiles/editor/201210040952201575.jpg)
-
-毕竟网上的只是参考，那么我该如何学习它呢？这里我采取了以下博客的推荐。[献给初学者：谈谈如何学习Linux操作系统](http://ixdba.blog.51cto.com/2895551/569329)
 
 >**初级阶段：**
 >
