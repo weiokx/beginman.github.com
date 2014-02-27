@@ -36,8 +36,8 @@ pre, code { font-family: "Courier New", Courier, monospace; overflow-x: auto; ve
 code { vertical-align:top;}
 small { font-size: 12px; color: #888; }
 hr { border: 3px solid #f4f3f3; clear: both; max-width: 300px; border-radius: 5px; margin: 35px 0 35px 90px; }
-::selection         {background: rgba(0, 0, 0, .1);}
-::-moz-selection    {background: rgba(0, 0, 0, .1);}
+::selection         {background: #f14e32;color: #fff}
+::-moz-selection    {background: #f14e32;color: #fff}
 img::selection      {background: none; width: 100%; }
 img::-moz-selection {background: none; width: 100%; }
 
