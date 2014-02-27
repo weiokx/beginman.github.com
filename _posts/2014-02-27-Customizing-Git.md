@@ -29,12 +29,15 @@ category: git
     $ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
     
 **4.查看帮助**
+
     git config --help
     
 **5.设置默认git编辑器**
+
     git config --global core.editor emacs
     
 **6.设置主题颜色**
+
     git config --global color.ui true   
     
 
