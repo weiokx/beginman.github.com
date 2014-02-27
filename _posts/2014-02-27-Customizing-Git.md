@@ -26,7 +26,8 @@ category: git
     $ git config --global alias.unstage 'reset HEAD'   # 表示拉回的未暂存
     $ git config --global alias.last 'log -1'           # 表示查看最后一次提交历史
     # 下面表示智能个性化log查看
-    $ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+    
+$ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
     
 **4.查看帮助**
 
