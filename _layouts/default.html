@@ -10,7 +10,6 @@
     **
     -->
     <meta charset="utf-8" />
-    <!--baidu apps-->
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="generator" content="Jekyll" />
@@ -42,7 +41,7 @@
     </header>
     <section id="contain">
         <header id="begin">
-            <span>{{ page.date | date_to_string }}</span>
+            <span>{{ page.date }}</span>
         </header>
 		{{ content }}
         <footer id="foot">
