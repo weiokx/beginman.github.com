@@ -1,6 +1,6 @@
 markdown:         redcarpet
 pygments:         true
-paginate:         8
+paginate:         10
 
 title:            BeginMan的博客
 url:              http://beginman.github.io
@@ -19,7 +19,7 @@ follow:
 description:      Laern more
 
 indexContent:     true
-imageLink:        http://www.pizn.net/static/images/20121109Monutain.jpg
+imageLink:        http://images.cnblogs.com/cnblogs_com/BeginMan/548700/o_my.jpg
 
 
 style:            /css/style.css
