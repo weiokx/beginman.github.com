@@ -16,6 +16,9 @@ categories: Jekyll
     del %systemroot%\system32\drivers\etc\hosts
     echo 127.0.0.1 www.test.com>>%systemroot%\system32\drivers\etc\hosts
 
+
+*del %systemroot%\system32\drivers\etc\hosts * 可以省略不写
+
 >通过 www.ipaddress.com  这个网站查询github.global.ssl.fastly.net的IP地址，然后在hosts中增加一条。
 
 >2、把里面的IP和域名更改成自己想要的，如github对应的：
