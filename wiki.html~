@@ -1,0 +1,11 @@
+---
+layout: default
+title: Contact
+date: Wiki
+---
+<article class="post">
+<h3>Git and Github.</h3>
+<ul>
+    <li><a href="">What you should know about Github.</a></li>
+</ul>
+</article>
