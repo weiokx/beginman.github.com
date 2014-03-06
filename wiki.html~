@@ -6,6 +6,7 @@ date: Wiki
 <article class="post">
 <h3>Git and Github.</h3>
 <ul>
-    <li><a href="">What you should know about Github.</a></li>
+    <li><a href="{{site.url}}/wiki/github.html"> 关于Github.</a></li>
 </ul>
+<h3><a href="{{site.url}}/wiki/greatWiki.html">免费的编程中文书籍索引</a></h3>
 </article>
