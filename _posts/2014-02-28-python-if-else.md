@@ -6,6 +6,7 @@ category: python
 For example:
 
 	a, b, c = 1, 2, 3
+	
 
 **1. Common:**
 
