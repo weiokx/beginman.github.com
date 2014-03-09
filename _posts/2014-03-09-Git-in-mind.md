@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Git
+title: Git一套简流
 category: git
 ---
 ##一、前奏
