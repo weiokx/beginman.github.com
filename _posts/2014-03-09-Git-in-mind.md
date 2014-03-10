@@ -193,6 +193,10 @@ No3.别名配置
 
 比如写提交说明的时候，window下默认的是vi,如果在Linux下，可以设置想要的编辑器，如vim/emacs/sublime等，如果查看日志过长则git默认开启分页器，。less分页器默认使用vi风格的热键……综上所述，必需学习"**Vim**"编辑器，否则你连退出都不在怎么退的。
 
+在git中可以设置你想要的编辑器：
+
+    git config --global core.editor
+
 
 [**简明 Vim 练级攻略**](http://coolshell.cn/articles/5426.html)
 
@@ -207,7 +211,6 @@ No3.别名配置
 [**程序员的facebook**.](http://beginman.cn/wiki/github.html)
 
 [**GotGitHub**](http://www.worldhello.net/gotgithub/)
-
 
 
 ##三、开始工作
@@ -282,8 +285,9 @@ No3.别名配置
 
 **[4].查看快照**
 
-	$ git diff	#当前工作目录（没有 staged(添加到索引中)）和上次提交与本地索引间的差异
-	$ git diff --cached  #当前的索引(staged,添加到索引中)和上次提交间的差异
+	$ git diff	#尚未暂存的文件更新了哪些部分（unstaged）和上次提交与本地索引间的差异
+	$ git diff --cached  #已暂存的文件和上次提交时的快照之间的差异(staged,添加到索引中)
+	#上面效果同：git diff --staged
 	$ git diff HEAD显示你工作目录与上次提交时之间的所有差别
 
 如下：
@@ -406,6 +410,173 @@ ok,存起来后我们就要改bug了，next step:
 这个还是觉得要个人总结，毕竟只有遇到困难，理解与记忆才最深。
 
 也可以查看[Git常见错误汇总](http://beginman.cn/jekyll/2014/02/25/common-error-for-git.html)，随时更新汇总。
+
+**[No1].如何忽略一些文件**
+
+一些文件，如python编译文件‘pyc’,日志文件‘2014-03-10.log’等等这些不需要提交版本，可以用以下方法解决：创建一个名为 .gitignore 的文件，列出要忽略的文件模式。
+
+    $ >.gitignore   # linux
+    copy con .gitignore # windows
+
+然后在里面写忽略规则：
+
+>忽略规则是对文件名有效的;
+
+>A: 空行或#号开始的行,会被忽略;
+
+>B: 可以使用通配符:
+
+    *        任意字符;
+    ?        单个字符;
+    [abc]    多种可能的字符a、b或c;
+    [a-z0-9] 表示在某个范围内进行匹配;
+    \        转义字符;
+    !        表示取反(不忽略),写在某条规则的前面;
+       
+>C: 路径分隔符"/";如果"/"后面的名称是个目录,则该目录以及该目录下的所有文件都会被忽略;如果"/"后面的名称是个文件,则该文件不会被忽略;
+
+   例如: /name
+   如果name是个目录,则目录name和name下的所有文件都会被忽略;如果name是个文件,则该文件不会被忽略;
+   
+>D: .gitignore文件也可以忽略自己,只要把自己的名字写进来即可;
+>E: 一条(行)忽略规则只对某一个目录下的文件有效,而对该目录下的子目录中的文件无效;
+>F: 一条(行)忽略规则也可以只对单个文件有效(忽略单个指定的文件);
+
+例如:
+
+    *.pyc       #忽略所有以.pyc为后缀的文件;
+    !lib.a    #不忽略文件lib.a;
+    /tbkt     #只忽略此目录下tbkt文件,子目录的tbkt不被忽略;
+    log/    #忽略log目录下的所有文件;
+    doc/*.txt #只忽略doc/下所有的txt文件,但是不忽略doc/subdir/下的txt文件;
+    
+*一个常见的问题是：已经加入了忽略文件，为什么还会在版本控制中？这是因为在加入之前已经被跟踪了，解除跟踪即可。见Next step:*
+
+
+    
+**[No2].如何移除一些文件**
+
+**情景1：新添加一个文件，没有加入暂存区。**
+
+    $ echo "try to delete">b.txt
+    $ git st
+    # 位于分支 master
+    # Untracked files:
+    #   （使用 "git add <file>..." 以包含要提交的内容）
+    #
+    #	b.txt
+    nothing added to commit but untracked files present (use "git add" to track)
+    $ git rm b.txt     # git rm：从已跟踪文件清单（暂存区）中移除。
+    fatal: 路径 'b.txt' 未匹配任何文件
+    $ rm b.txt        # 手动删除
+    $ git st
+    # 位于分支 master
+    nothing to commit, working directory clean
+
+这种情况，最好处理，没什么问题！
+
+**情景2：修改了已有文件，没有加入暂存区**
+
+    [beginman@beginman test]$ cat a.txt 
+    ok
+    [beginman@beginman test]$ echo "Wow">a.txt
+    [beginman@beginman test]$ cat a.txt 
+    Wow
+    [beginman@beginman test]$ git st
+    # 位于分支 master
+    # 尚未暂存以备提交的变更：
+    #   （使用 "git add <file>..." 更新要提交的内容）
+    #   （使用 "git checkout -- <file>..." 丢弃工作区的改动）
+    #
+    #	修改：      a.txt
+    #
+    no changes added to commit (use "git add" and/or "git commit -a")
+    [beginman@beginman test]$ git rm a.txt
+    error: 'a.txt' 有本地修改
+    （使用 --cached 保存文件，或用 -f 强制删除）
+
+它会提示我们使用 --cached 保存文件，或用 -f 强制删除，如果删除之前修改过并且已经放到暂存区域的话，则必须要用强制删除选项 -f；另外一种情况是，我们想把文件从 Git 仓库中删除（亦即从暂存区域移除），但仍然希望保留在当前工作目录中用 --cached 选项即可。
+
+    [beginman@beginman test]$ git rm --cached a.txt
+    rm 'a.txt'
+    [beginman@beginman test]$ ls
+    a.txt  README.md
+    [beginman@beginman test]$ git st
+    # 位于分支 master
+    # 要提交的变更：
+    #   （使用 "git reset HEAD <file>..." 撤出暂存区）
+    #
+    #	删除：      a.txt
+    #
+    # Untracked files:
+    #   （使用 "git add <file>..." 以包含要提交的内容）
+    #
+    #	a.txt
+
+**情景3：未修改已有文件**
+
+    [beginman@beginman test]$ git rm README.md
+    [beginman@beginman test]$ git st
+    # 位于分支 master
+    # 要提交的变更：
+    #   （使用 "git reset HEAD <file>..." 撤出暂存区）
+    #
+    #	删除：      README.md
+    #	删除：      a.txt
+    #
+
+**小结：**
+
+>从这三个情景，我们得出的小结如下：
+
+>1.git rm <filename> 命令把一个文件删除，并把它从git的仓库管理系统中移除。如果是文件夹则：git rm -r <dirname>
+
+>2.git rm --cached 从git的索引库中移除,但是对文件本身并不进行任何操作。
+
+>3.git rm -f强制删除
+
+**[No3].如何移动一些文件**
+
+    $ git mv file_from file_to
+    # 相当于执行了下面三条命令
+    $ mv file_from file_to
+    $ git rm file_from
+    $ git add file_to
+    
+比如如下操作：
+
+    [beginman@beginman test]$ mkdir do
+    [beginman@beginman test]$ ls
+    c.txt  do
+    [beginman@beginman test]$ git mv c.txt do/abc.txt
+    [beginman@beginman test]$ ls
+    do
+    [beginman@beginman test]$ ls do/
+    abc.txt
+    [beginman@beginman test]$ git st
+    # 位于分支 master
+    # 要提交的变更：
+    #   （使用 "git reset HEAD <file>..." 撤出暂存区）
+    #
+    #	删除：      README.md
+    #	重命名：    a.txt -> do/abc.txt
+    #
+    
+    
+**[No4].如何撤销一些文件**  
+  
+情景1.撤销最后一次的提交
+
+    $ git commit --amend
+    git reset --hard commit_id （–hard：彻底回退到某个版本，本地的源码也会变为上一个版本的内容）
+    
+情景2.取消已经暂存的文件
+
+    git reset HEAD <file>. 
+    
+情景3.取消对文件的修改
+
+    git checkout -- <file>.
 
 ##四、线上活动
 完成中……
