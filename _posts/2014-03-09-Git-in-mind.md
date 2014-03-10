@@ -133,6 +133,29 @@ No3.别名配置
 
 打开文件直接修改。
 
+如果是Linux用户，也可以直接修改Linux别名，会更爽的，如下：
+
+    $ vi ~/.bashrc      # 打开系统配置文件，编辑如下：
+    
+    # alias
+    alias cls='clear'    # 清屏
+    alias pyrun='python manage.py runserver' #启动python脚本
+    alias snv='sl'     # sl效果：跑小火车
+    alias gti='sl'
+    alias gm='git push origin master'  # 简化
+    alias gl='git pull origin master'  # 简化
+    
+    $ source ~/.bashrc   #保存后，让其立即生效
+   
+这个sl就是一个娱乐效果，比如把ls打成了sl,把git打成了gti,系统会硬生生提示你错误信息，不如来个搞笑的东西，娱乐娱乐。
+
+    sudo apt-get install sl
+
+
+![](http://images.cnblogs.com/cnblogs_com/BeginMan/486940/o_bdemo.gif)
+
+       
+
 ###2.建立工作区
 
 也就是取得项目的 Git 仓库，分为两类:
