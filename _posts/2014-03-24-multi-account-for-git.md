@@ -1,8 +1,9 @@
 ---
-layout:post
-title:git多账户
-category:git
+layout: post
+title: git Multi account
+category: git
 ---
+
 ##一.原理问题
 ###1.git config
 在初次运信git，会运行git-config命令（一个叫做 git config 的工具），专门用来配置或读取相应的工作环境变量。这些变量可以存放在以下三个不同的地方：
