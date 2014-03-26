@@ -1,4 +1,4 @@
-#Welcom!
+#Welcom!Welcome!
 
 BeginMan's blog.
 
