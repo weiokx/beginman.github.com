@@ -39,6 +39,7 @@
                 <li class="fn-clear"><a href="{{ site.url }}/contact.html"><i class="icon-envelope-alt"></i> Contact</a></li>
 
             </ul>
+            <input type="text" style="border:1px solid #ccc;color:#999;border-radius:30px; padding-left:10px;font-size:13px;" name="" id="google_search_q" value='回车搜索' onkeyup="return google_search_enter(event);" onclick=clearText()>
         </nav>
     </header>
     <section id="contain">
@@ -77,5 +78,17 @@ $(document).ready(function() {
         })();
     }
 });
+function google_search() {
+        return location.href = "http://www.google.com/search?q=" + encodeURIComponent("site:beginman.cn " + document.getElementById("google_search_q").value), !1
+    }
+    function google_search_enter(n) {
+        if (n.keyCode == 13) return google_search(), !1
+    }
+    function clearText(){
+        txt = document.getElementById("google_search_q").value;
+        if (txt == '回车搜索'){
+            document.getElementById("google_search_q").value='';
+        }
+    }
 </script>
 </html>
