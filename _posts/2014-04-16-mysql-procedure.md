@@ -321,7 +321,8 @@ MySQL的存储过程（stored procedure）和函数（stored function）统称�
 从结果可以看出：我们把 @id（10），传给存储过程后，存储过程最后又把计算结果值 11（id_inner_3）传回给调用者。 MySQL 存储过程 inout 参数的行为跟 C 语言函数中的引用传值类似。
 >
 **通过以上例子：如果仅仅想把数据传给 MySQL 存储过程，那就使用“in” 类型参数；如果仅仅从 MySQL 存储过程返回值，那就使用“out” 类型参数；如果需要把数据传给 MySQL 存储过程，还要经过一些计算后再传回给我们，此时，要使用“inout” 类型参数。**
-##九、Python操作存储过程
+
+E##九、Python操作存储过程
 完善中……
 ##十、小结
 ###1.存储过程的优势：
@@ -383,7 +384,6 @@ MySQL的存储过程（stored procedure）和函数（stored function）统称�
 (2).权限问题：
 
 创建存储子程序需要CREATE ROUTINE权限；提醒或移除存储子程序需要ALTER ROUTINE权限；执行子程序需要EXECUTE权限。
-
 
 
 
