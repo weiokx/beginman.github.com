@@ -13,3 +13,6 @@ category: mysql
 
 [4.other](http://ubuntuforums.org/showthread.php?t=1811158)
 
+其实最主要到问题就是权限和操作问题，要以root到身份切入，然后修改my.cnf，最后重启mysql:`service mysql restart`
+
+可以参考这里[mysql 默认编码设置](http://hi.baidu.com/weiokx/item/3cbc1d5569b11700e7c4a525)
