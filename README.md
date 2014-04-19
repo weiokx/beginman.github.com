@@ -1,9 +1,5 @@
 #Welcom!Welcome!!!!
 
-BeginMan's blog.
-
-**Other blog：**
-
 1、[博客园](http://www.cnblogs.com/BeginMan/)
 
 2、[Weibo](http://weibo.com/BeginMan)
