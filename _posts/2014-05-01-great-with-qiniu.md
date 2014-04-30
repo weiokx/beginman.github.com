@@ -76,6 +76,7 @@ Ubuntu下强大的截屏软件，可设置效果，可ftp上传。
     alias pro='cd /home/beginman/myproject/' # cd到我的项目里
 
 演示如下：
+
     [beginman@beginman qiniu]$ qnlogin   # 登录（会话最长1个小时，过后再登录）
     [beginman@beginman qiniu]$ qninfo    # 个人信息
     UserId:		 *****************
