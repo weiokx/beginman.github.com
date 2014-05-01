@@ -1,3 +1,10 @@
+---
+layout: post
+title: Linux学习一：档案属性与权限管理
+category: linux
+---
+
+
 ##linux档案权限和目录配置的简单介绍
 ###一.使用者与群组
 Linux最优秀的地方之一就是其多人多任务工作环境，一台主机有可能有很多人同时使用，因此对档案数据就要好好保密了，所以档案可存取身份分为三个类别：owner/group/other,各有read/write/execute权限。
