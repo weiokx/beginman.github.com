@@ -358,7 +358,7 @@ li[class^="icon-"].icon-large:before, li[class*=" icon-"].icon-large:before {
 #head-line { width: 100%; height: 5px; background: black; position: fixed; top: 0; left: 0; z-index: 101; }
 #foot-line { width: 100%; height: 5px; background: black; position: fixed; bottom: 0; left: 0; z-index: 101;}
 #content { width: 100%;}
-#head { width: 320px; min-height: 400px; height: auto;  position: fixed; left: 0; top: 5px; font-weight: 700; text-align: center; }
+#head { width: 320px; min-height: 900px;background:#126874; height: auto;  position: fixed; left: 0; top: 5px; font-weight: 700; text-align: center; }
 #logo { margin: .8em auto 1.8em auto; width: 200px; height: 200px; border-radius: 100px 100px; background: #f8f8f8; }
 #logo h1 { font-family: 'JennaSue'; font-size: 80px; width: 200px; overflow: hidden;  line-height: 200px; text-align: center; text-shadow: -1px 2px 3px #a0a0a0; }
 #logo h2 { font-weight: 400; font-family:'JennaSue'; font-size:  30px; color: #898989; line-height: 50px; padding-bottom: .3em; border-bottom: 1px dotted #d8d8d8; }
@@ -413,7 +413,8 @@ h1, h2, h3, h4, h5, h6{ font-weight: 500; color:#333; }
 .post em { font-weight: 700; }
 .post .clearLeft { margin-left: -40px; }
 .post img, .post audio, .post iframe, .post audio, .post canvas, .post video { max-width: 720px; }
-.post .post-title { margin-left: -40px; margin-bottom: 10px; padding: 4px 0 4px 40px; background: #f8f8f8;  border-top: 1px solid #e8e8e8; border-bottom: 1px solid #e8e8e8;   }
+.post .post-title { margin-left: -40px; margin-bottom: 10px; padding: 4px 0 4px 40px; background: #E7F5DA;  border-top: 1px solid #e8e8e8; border-bottom: 1px solid #e8e8e8; border-left:10px solid #eea  }
+.post .post-title:hover{background:#eea;-webkit-transition: all 0.2s ease-out;animation: 1s rainbow;}
 .post .post-title a { border-bottom: none; }
 .post .post-title a:hover { border-bottom: 1px dotted #343434; }
 .fork-me { position: fixed; right: 0; top: 0; z-index: 999; }
@@ -529,4 +530,10 @@ h1, h2, h3, h4, h5, h6{ font-weight: 500; color:#333; }
 
     }
     .post table th, .post table td { border: 1px solid #ddd; padding: 2px 0px; }
+}
+@keyframes rainbow {
+    0% { background: #126874;  }
+    50% { background: #3DACE0;  }
+    100% { background: #eea;  }
+
 }

@@ -1,6 +1,6 @@
 ---
 layout: default
-date: Beignman的博客列表
+date: 孤独与灵魂才是咖啡的最佳伴侣...
 ---
 {% for rpost in paginator.posts %}
 	<article class="post fn-clear">
@@ -9,7 +9,7 @@ date: Beignman的博客列表
         {% if site.indexContent == true %}
         {{ rpost.content }}
         {% else %}
-        <p>{{ rpost.description }}</p>
+        <p>{{ rpost.excerpt }}</p>
         {% endif %}
     </article>
 {% endfor %}
