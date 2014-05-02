@@ -62,7 +62,7 @@ body,html{
   padding-right: 30px;
 }
 #content {font-size:18px;line-height:1.8;}
-#content h2{padding: 14px;margin-bottom: 20px;border: 1px solid transparent;border-radius: 4px;background-color: #fcf8e3;border-color: #faebcc;color: #AD8A5C;}
+#content h2{padding: 14px;margin-bottom: 20px;}
 blockquote p{font-size:20px;}
 .center {text-align: center;}
 .nav-pills>li.active>a,
@@ -75,4 +75,8 @@ blockquote p{font-size:20px;}
 .show-commend{
   width:100%;
   margin-bottom:40px;
+}
+#content blockquote{
+    color: #A8A3A3;
+    font-size:15px;
 }

@@ -34,7 +34,8 @@ active: python
 
 # 首页除了最新文章外显示分类
 cates: 
-  - Python
+  - Linux
+  - 思考
 
 
 # 中文本地化
