@@ -10,8 +10,8 @@ category: linux
 ![](http://beginman.qiniudn.com/bash)
 
 我的配置查看如下：
-
-export PS1="---- [Time]:\[\033[1;35m\]\T     \[\033[0m\][User]:\[\033[1;33m\]\u     \[\033[0m\][Dir]:\[\033[1;32m\]\w\[\033[0m\] ----\n\$ "
+    
+    export PS1="---- [Time]:\[\033[1;35m\]\T     \[\033[0m\][User]:\[\033[1;33m\]\u     \[\033[0m\][Dir]:\[\033[1;32m\]\w\[\033[0m\] ----\n\$ "
 
 
 ##推荐配置如下
@@ -24,7 +24,7 @@ export PS1="---- [Time]:\[\033[1;35m\]\T     \[\033[0m\][User]:\[\033[1;33m\]\u 
 
 正确的命令则显示笑脸^_^，错误的命令则显示O_O。
 
-PS1="\`if [ \$? = 0 ]; then echo \[\e[33m\]^_^\[\e[0m\]; else echo \[\e[31m\]O_O\[\e[0m\]; fi\`[\u@\h:\w]\\$ "
+    PS1="\`if [ \$? = 0 ]; then echo \[\e[33m\]^_^\[\e[0m\]; else echo \[\e[31m\]O_O\[\e[0m\]; fi\`[\u@\h:\w]\\$ "
 
 
 效果如下：
@@ -41,7 +41,7 @@ PS1="\`if [ \$? = 0 ]; then echo \[\e[33m\]^_^\[\e[0m\]; else echo \[\e[31m\]O_O
 
 **4.多行提示**
 
-PS1="\n\[\033[35m\]\$(/bin/date)\n\[\033[32m\]\w\n\[\033[1;31m\]\u@\h: \[\033[1;34m\]\$(/usr/bin/tty | /bin/sed -e 's:/dev/::'): \[\033[1;36m\]\$(/bin/ls -1 | /usr/bin/wc -l | /bin/sed 's: ::g') files \[\033[1;33m\]\$(/bin/ls -lah | /bin/grep -m 1 total | /bin/sed 's/total //')b\[\033[0m\] -> \[\033[0m\]"
+    PS1="\n\[\033[35m\]\$(/bin/date)\n\[\033[32m\]\w\n\[\033[1;31m\]\u@\h: \[\033[1;34m\]\$(/usr/bin/tty | /bin/sed -e 's:/dev/::'): \[\033[1;36m\]\$(/bin/ls -1 | /usr/bin/wc -l | /bin/sed 's: ::g') files \[\033[1;33m\]\$(/bin/ls -lah | /bin/grep -m 1 total | /bin/sed 's/total //')b\[\033[0m\] -> \[\033[0m\]"
 
 效果与我的终端效果类似。
 
