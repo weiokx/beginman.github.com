@@ -1,34 +1,44 @@
-markdown:         redcarpet
-pygments:         true
-paginate:         10
+permalink: /:year/:month/:day/:title.html
+paginate: 10
+markdown: redcarpet
 
-title:            BeginMan的博客
-url:              http://beginman.github.io
-feed:             /atom.xml
-author:
-    name:         BeginMan
-    email:        pythonsuper@gmail.com
-    description:  "The one theme is another web theme design by PIZn."
+# 作者信息
+author: 
+  name: BeginMan
+  email: xinxinyu2011@163.com
+  link: http://beginman.cn
+  weibo: http://weibo.com/BeginMan
+  github: http://github.com/BeginMan
 
-about:            "中文名：方朋，英文名:BeginMan.一个编程爱好者，也是一个极具想法和折腾的人，现在是一名初级的Pythoner。生活在郑州。搞这个博客的理由就是不要给自己懒惰的借口，要记录和总结一些东西，不论是技术方面还是书评/影评或者生活方面，只要觉得有意义的事情都会记录上去。如果你觉得这篇博客还有点意思，你可以通过下面几种方式联系我，或者到http://www.cnblogs.com/BeginMan/ 关注我之前的博客。"
-follow:
-    email:        pythonsuper@gmail.com
-    github:       https://github.com/BeginMan
-    twitter:      http://www.twitter.com/BeginMan
-    facebook:     http://facebook.com/BeginMan
-description:      Laern more
+# 站点信息
+title: BeginMan的博客 
+description: BeginMan的博客
+url: http://beginman.cn
+rss_url: /pages/atom.xml
 
-indexContent:     false
-imageLink:        http://images.cnblogs.com/cnblogs_com/BeginMan/548700/o_my.jpg
+# gavatar头像及Favicon
+gavatar: /public/upload/gavatar/gavatar.jpg
+favicon: /public/upload/gavatar/favicon.ico
+
+# google analytics 设置
+ga:
+  id: 48054180
+  url: beginman.cn
+
+# disqus 设置
+disqus:
+  shortname: BeginMan
+
+# 主题设置，自动激活某个标签
+active: python
+
+# 首页除了最新文章外显示分类
+cates: 
+  - Python
 
 
-style:            /css/style.css
-blogName:         BeginMan
-blogDesc:         A pythoner love IT and life.
-favicon:          /favicon.ico
-theme:            default
-
-disqus:           BeginMan
-
-copyright:        Copyleft © 2014 BeginMan All rights reserved.
-test:             ok
+# 中文本地化
+locals:
+  tags: 标签
+  about: 关于
+  newest: 最新文章

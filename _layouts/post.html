@@ -1,19 +1,43 @@
 ---
-layout: default
+layout: base
 ---
-<article class="post">
-    <h1 class="post-title">{{ page.title }}</h1>
-    {{ content }}
-    <nav class="pagination-link">
+<div class="row">
+  <div class="col-md-12 aside3-title">
+    <br>
+    <h2 id="#identifier">{{ page.title }}</h2>
+    <span class="glyphicon glyphicon-user"></span>&nbsp;BeginMan |<span class="glyphicon glyphicon-edit"></span>&nbsp; {{ page.date | date:"%Y年%m月%d日" }}
+  </div>
+  <div class="col-md-12 aside3-content">
+    <hr>
+    <div id="content">
+      {{ content }}
+    </div>
+<br>
+<br>
+<br>
+<hr>
+<br>
+ <div class="alert alert-info">
         {% if page.previous %}
-        <a class="prev" href="{{ site.url }}{{ page.previous.url }}" rel="bookmark">&laquo;&nbsp;{{ page.previous.title | truncatewords:5 }}</a>
+        <a class="prev" href="{{ site.url }}{{ page.previous.url }}" rel="bookmark"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;{{ page.previous.title | truncatewords:5 }}</a>
         {% endif %}
         {% if page.next %}
-        <a class="next" href="{{ site.url }}{{ page.next.url }}" rel="bookmark">{{ page.next.title | truncatewords:5 }}&nbsp;&raquo;</a>
+        <a class="next" style="float:right" href="{{ site.url }}{{ page.next.url }}" rel="bookmark">{{ page.next.title | truncatewords:5 }}&nbsp;<span class="glyphicon glyphicon-chevron-left"></span></a>
         {% endif %}
-     </nav>
+	<hr>
+<p>本文基于<a href="http://creativecommons.org/licenses/by/2.5/cn/" title="Creative Commons Attribution 2.5 China Mainland License" target="_blank">署名 2.5 中国大陆</a>许可协议发布，欢迎转载，演绎或用于商业目的，但是必须保留本文的署名<a href="http://beginman.cn">BeginMan</a>（包含链接）。如您有任何疑问，请<a href="mailto:xinxinyu2011@163.com" target="_blank">Email</a>。</p>
+ </div>
      <div class="bshare-custom"><a title="分享到QQ空间" class="bshare-qzone"></a><a title="分享到新浪微博" class="bshare-sinaminiblog"></a><a title="分享到豆瓣" class="bshare-douban"></a><a title="分享到电子邮件" class="bshare-email"></a><a title="分享到腾讯微博" class="bshare-qqmb"></a><a title="分享到Facebook" class="bshare-facebook"></a><a title="分享到百度搜藏" class="bshare-baiducang"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a><span class="BSHARE_COUNT bshare-share-count">0</span></div>
      <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=3&amp;lang=zh"></script>
      <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
-     <div id="disqus_thread"></div>
-</article>  
+    <hr>
+    {% include disqus.html %}
+  </div>
+  <!-- 目录 -->
+  <div id="content_table" style="position:fixed;right:20px;top:120px;display:none;">
+    <div class="panel panel-success">
+      <div class="panel-body" id="nav"></div>
+    </div>
+  </div>
+</div>
+
