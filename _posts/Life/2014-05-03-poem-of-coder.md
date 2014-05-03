@@ -18,4 +18,4 @@ description: 知法懂法——做一个精明的程序员
 
 > BeginMan 侃于5.1尾末深夜
 
-![](http://beginman.qiniudn/coder)
+![](http://beginman.qiniudn.com/coder)
