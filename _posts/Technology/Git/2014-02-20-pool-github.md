@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 关于Github访问慢，不能加载css、js解决办法
+title: 关于Github和Stack Overflow访问慢，不能加载css、js解决办法
 category: Git
 tags: Git
 description: 关于Github访问慢，不能加载css、js解决办法
@@ -21,10 +21,12 @@ description: 关于Github访问慢，不能加载css、js解决办法
 
 >通过 www.ipaddress.com  这个网站查询github.global.ssl.fastly.net的IP地址，然后在hosts中增加一条。
 
->2、把里面的IP和域名更改成自己想要的，如github对应的：
+>2、把里面的IP和域名更改成自己想要的，如github和Stack Overflow对应的：
     
     #fix github cdn problem because of GFW
     185.31.17.184  github.global.ssl.fastly.net
+    198.252.206.140     cdn.sstatic.net 
+
 
 >3、右键点击”hosts.bat”文件，选择以管理员权限运行。即可
 
@@ -40,7 +42,9 @@ My hosts:
 	127.0.0.1	localhost
 	127.0.1.1	beginman
 	185.31.17.184   github.global.ssl.fastly.net 
-	# The following lines are desirable for IPv6 capable hosts
+	198.252.206.140     cdn.sstatic.net 
+
+    # The following lines are desirable for IPv6 capable hosts
 	::1     ip6-localhost ip6-loopback
 	fe00::0 ip6-localnet
 	ff00::0 ip6-mcastprefix
