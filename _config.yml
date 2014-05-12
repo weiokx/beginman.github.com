@@ -14,7 +14,8 @@ tagline: BeginMan's Blog
 
 # Information about author
 #
-paginate:         15
+paginate:  15
+paginate_path:  "page:num"
 author :
   name : BeginMan
   
