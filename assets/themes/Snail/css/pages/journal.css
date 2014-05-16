@@ -115,10 +115,10 @@
 }
 
 .the-article blockquote {
-	padding:10px 10px 5px;
-	font-family:georgia,serif;
-	font-style:italic;
-	font-size:16px;
+background-color: #fdf7f7;
+border-color: #eed3d7;
+font-size:13px;
+color:#4D3C3C
 }
 .the-article blockquote p {
 	font-size:16px;
