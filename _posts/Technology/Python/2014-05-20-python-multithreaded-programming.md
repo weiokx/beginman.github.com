@@ -64,10 +64,110 @@ python解释器将源代码转换为字节码然后执行的过程，这里的�
 ###2.python虚拟机
 Python代码执行是由python虚拟机控制，在python虚拟机中同时只有一个线程执行，相当于单CPU运行多个进程，但是任意时刻只用一个进程在CPU中运行。
 ###3.python全局解释器锁
+对python虚拟机访问是通过python全局解释器锁(global interpreter lock , GIL)控制，实现相当于一把锁，在进程与线程概念中，存在着共享内存，其他线程必须等它结束，才能使用这一块内存。GIL就是锁住然后打开的不断循环的过程，用以防止多个线程同时读写某一块内存区域。
+
+![](http://deliveryimages.acm.org/10.1145/960000/959339/7124f1.png)
+####4.time.sleep()演示进程工作
+
+    #!/usr/bin/env python
+    # coding=utf-8
+    from time import sleep,ctime
+
+    def foo1():
+        print 'foo1 starting..'
+        sleep(4)
+        print 'foo1 sleep 4 seconds!'
+    
+    def foo2():
+        print 'foo2 starting..'
+        sleep(2)
+        print 'foo2 sleep 2 seconds'
+    
+    def main():
+        foo1()
+        foo2()
+    
+    if __name__ == '__main__':
+        main()
+        
+在单线程中顺序执行后，执行时间为这两个函数的总和，大约6秒多。
 
 ##三.thread模块的使用
+在《Python核心编程》中，提示要**避免使用thread模块，而使用更高级的threading.**，一个重要原因就是当主进程（也叫父进程，表示创建了线程的进程）结束后，其所有线程都会被强制结束掉，无任何提醒，也不会用正常的清除工作。注意，在python3中，thread更名为_thread.
+
+常用函数：
+
+    thread.start_new_thread(function, args[, kwargs])
+    #创建一个新线程并返回它的标识，其方法类似apply(),需要一个函数名和参数（必须是元组类型的，若无则传`()`）
+    
+    thread.exit()
+    # 退出线程，若没有捕获则触犯SystemExit异常。
+    
+接下来实现上面的程序：
+
+    #!/usr/bin/env python
+    # coding=utf-8
+    # try thread.
+    import thread
+    from time import sleep
+    
+    def foo1():
+        print 'foo1 starting...'
+        sleep(4)
+        print 'foo1 sleep 3 seconds'
+    
+    def foo2():
+        print 'foo2 starting...'
+        sleep(2)
+        print 'foo2 sleep 4 seconds'
+    
+    def main():
+        thread.start_new_thread(foo1,()) #create a thread
+        thread.start_new_thread(foo2,()) #create a thread
+        sleep(6) #如果不加这个或者sleep时间小于（2+4）则也会出错
+        
+    if __name__ == "__main__":
+        main()
+        
+注意，如果不在main()函数后添加sleep(6)则会**报错**，Unhandled exception in thread started by sys.excepthook is missing lost sys.stderr。这就体现了**当主进程（也叫父进程，表示创建了线程的进程）结束后，其所有线程都会被强制结束掉**。添加在主函数添加sleep()的目的就是让主线程稍微停下等待所有的子线程结束后再继续执行代码。
+
+理想状态下，通过多线程实现两个程序的并发执行，程序运行的总时间就是线程运行时间最慢的一个。这里就是4秒了。
+但是为了管理线程，主线程不得不加sleep来等待所有子线程，这样一来运行时间不比单线程短，还有一点由于多线程运行时间不确定，所以单单用sleep控制主线程是不靠谱的，这里就要用到**锁**了。
+    
+    #!/usr/bin/env python
+    # coding=utf-8
+    import thread
+    from time import sleep
+    
+    loops = [4,2]
+    
+    def foo(nloop,nsec,lock):
+        print '%s starting...' %nloop
+        sleep(nsec)
+        print '%s sleep %s second' %(nloop,nsec)
+        lock.release() #释放锁
+    
+    def main():
+        locks= []  # lock object list
+        nloops = range(len(loops))
+    
+        # create LockType
+        for i in nloops:
+            lock = thread.allocate_lock() # 分配LockType类型的锁对象
+            lock.acquire() # 尝试获取锁对象
+            locks.append(lock) 
+        
+        # create thread
+        for i in nloops:
+            thread.start_new_thread(foo,(i,loops[i],locks[i]))
+            while locks[i].locked():pass  # 返回锁对象
+    
+    if __name__ == '__main__':
+        main()
+    
 
 ##四.threading模块的使用
+
 
 
 ##参考
