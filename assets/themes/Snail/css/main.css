@@ -1393,3 +1393,7 @@ a.action-icon.action-solution {
     bottom:50px;
     background:url(../img/backtop.png) no-repeat -70px 0px;    
 }
+h4{
+    font-size:15px;
+    font-weight:bold;
+}
