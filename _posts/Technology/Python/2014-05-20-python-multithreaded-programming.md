@@ -7,6 +7,7 @@ tags: [python,多线程]
 description: Pyhton多线程编程，多线程学习，线程与进程。
 ---
 ##一.理解线程与进程
+
 ###1.1 进程(process)
 进程是计算机中已运行程序的实体，是程序的基本执行实体，是线程的容器。它有两种运行方式：同步（循序）和异步（平行）。
 
@@ -27,7 +28,9 @@ description: Pyhton多线程编程，多线程学习，线程与进程。
 ![](http://www.herbaat.com/wp-content/uploads/2014/01/process-and-thread.png)
 
 ###1.2 线程(thread)
+
 ####1.2.1 基本概念
+
 **是操作系统能够进行运算调度的最小单位**。它被包含在进程之中，是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。
 
 线程有四种状态：
@@ -39,7 +42,9 @@ description: Pyhton多线程编程，多线程学习，线程与进程。
 非中断（unblock）
 
 退出（finish）
+
 ####1.2.2 多线程
+
 线程是程序中一个单一的顺序控制流程.在单个程序中同时运行多个线程完成不同的工作,称为多线程。
 
 为什么要引入多线程呢？有以下几个优点：
@@ -54,19 +59,27 @@ description: Pyhton多线程编程，多线程学习，线程与进程。
 2.并发难以管理，如果有大量的线程,会影响性能,因为操作系统需要在它们之间切换且更多的线程需要更多的内存空间。
 
 ####1.2.3 线程与进程的关系
+
 在[**进程与线程的一个简单解释**](http://www.ruanyifeng.com/blog/2013/04/processes_and_threads.html) 这篇博客中，能显而易见地弄清楚它们之间的联系。
 
 更多内容，可以参考[**Processes and Threads**](http://www.qnx.com/developers/docs/6.4.1/neutrino/getting_started/s1_procs.html?lang=cn#Threads_and_processes)
 
 ##二.Python多线程
+
 ###1.python解释器
+
 python解释器将源代码转换为字节码然后执行的过程，这里的解释执行是相对于编译执行而言。更多内容参考[**Python解释执行原理**](http://www.wangyuxiong.com/archives/51258)
+
 ###2.python虚拟机
+
 Python代码执行是由python虚拟机控制，在python虚拟机中同时只有一个线程执行，相当于单CPU运行多个进程，但是任意时刻只用一个进程在CPU中运行。
+
 ###3.python全局解释器锁
+
 对python虚拟机访问是通过python全局解释器锁(global interpreter lock , GIL)控制，实现相当于一把锁，在进程与线程概念中，存在着共享内存，其他线程必须等它结束，才能使用这一块内存。GIL就是锁住然后打开的不断循环的过程，用以防止多个线程同时读写某一块内存区域。
 
 ![](http://deliveryimages.acm.org/10.1145/960000/959339/7124f1.png)
+
 ####4.time.sleep()演示进程工作
 
     #!/usr/bin/env python
@@ -102,6 +115,8 @@ Python代码执行是由python虚拟机控制，在python虚拟机中同时只�
     
     thread.exit()
     # 退出线程，若没有捕获则触犯SystemExit异常。
+    
+更多thread常用函数，参考[**文档16.3. thread — Multiple threads of control**](https://docs.python.org/2/library/thread.html?highlight=thread#thread)
     
 接下来实现上面的程序：
 
@@ -167,6 +182,90 @@ Python代码执行是由python虚拟机控制，在python虚拟机中同时只�
     
 
 ##四.threading模块的使用
+
+这里介绍threading的Thread类，更多threading详尽文档[**16.2. threading — Higher-level threading interface**](https://docs.python.org/2/library/threading.html?highlight=threading#lock-objects)
+
+threading的Thread类,可以重写__init__()和run().
+
+方式一:
+
+    #!/usr/bin/env python
+    # coding=utf-8
+    from time import sleep
+    import threading
+    
+    def foo(sec):
+        print '%s starting..' % sec
+        sleep(sec)
+        print '%s end..' %sec
+    
+    threads = []
+    for i in range(5):
+        t = threading.Thread(target=foo,args=(i,))
+        threads.append(t)
+    
+    for i in threads:
+        i.start()  # 启动所有
+        i.join()    # 等待结束
+        
+方式二：
+
+    #!/usr/bin/env python
+    # coding=utf-8
+    from time import sleep
+    import threading
+    #type2:创建一个Thread实例并传给它一个可调用的类对象
+        class Mythread(object):
+        def __init__(self,func,args):
+            self.func = func
+            self.args = args
+        
+        def __call__(self):
+            apply(self.func,self.args)
+    
+    def foo(i):
+        print '%s starting..' %i
+        sleep(i)
+        print 'sleep %s' %i
+    
+    threads = []
+    for i in range(5):
+        t = threading.Thread(target=Mythread(foo,(i,))) # 传递可调用类对象
+        threads.append(t)
+    
+    for i in threads:
+        i.start()
+        i.join()
+    
+方式三：
+    
+    #!/usr/bin/env python
+    # coding=utf-8
+    # 方式3从Thread派生出一个子类，创建这个子类的实例
+    from time import sleep
+    import threading
+    
+    class Mythread(threading.Thread):
+        def __init__(self,func,args):
+            threading.Thread.__init__(self)
+            self.func = func
+            self.args = args
+
+        def run(self):
+            apply(self.func,self.args)
+    
+    def foo(i):
+        print '%s starting..' %i
+        sleep(i)
+        
+    threads = []
+    for i in range(5):
+        t = Mythread(foo,(i,))
+        threads.append(t)
+    
+    for t in threads:
+        t.start()
+        t.join()
 
 
 
