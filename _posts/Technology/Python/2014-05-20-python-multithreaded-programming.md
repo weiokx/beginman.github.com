@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Python多线程编程(1)
+title: Python多线程编程(1)：基础
 category: Python
 tagline: by BeginMan
 tags: [python,多线程]
@@ -13,7 +13,7 @@ description: Pyhton多线程编程，多线程学习，线程与进程。
 
 ![](http://www.bbc.co.uk/schools/gcsebitesize/design/images/fd_production_process.gif)
 
-####1.1.1 进程与程序的关系
+###1.2 进程与程序的关系
 程序本身只是指令、数据及其组织形式的描述，进程才是程序（那些指令和数据）的真正运行实例。若干进程有可能与同一个程序相关系，计算机以进程的形式加载多个程序到存储器中。
 
 以下参考可能会更加清晰了解程序与进程的关系：
@@ -22,14 +22,12 @@ description: Pyhton多线程编程，多线程学习，线程与进程。
 
 ![](http://oss.org.cn/kernel-book/ch04/4.1.files/image002.gif)
 
-####1.1.2进程与线程的关系
+###1.3 进程与线程的关系
 下图可见其关系
 
 ![](http://www.herbaat.com/wp-content/uploads/2014/01/process-and-thread.png)
 
-###1.2 线程(thread)
-
-####1.2.1 基本概念
+###1.4 线程(thread)
 
 **是操作系统能够进行运算调度的最小单位**。它被包含在进程之中，是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。
 
@@ -43,7 +41,7 @@ description: Pyhton多线程编程，多线程学习，线程与进程。
 
 退出（finish）
 
-####1.2.2 多线程
+###1.5  多线程
 
 线程是程序中一个单一的顺序控制流程.在单个程序中同时运行多个线程完成不同的工作,称为多线程。
 
@@ -55,7 +53,9 @@ description: Pyhton多线程编程，多线程学习，线程与进程。
 
 >1.调试困难 .  2.并发难以管理，如果有大量的线程,会影响性能,因为操作系统需要在它们之间切换且更多的线程需要更多的内存空间。
 
-####1.2.3 线程与进程的关系
+更多内容，参考[**多线程的优点和代价**](http://developer.51cto.com/art/201306/398002.htm)
+
+###1.6  线程与进程的关系
 
 在[**进程与线程的一个简单解释**](http://www.ruanyifeng.com/blog/2013/04/processes_and_threads.html) 这篇博客中，能显而易见地弄清楚它们之间的联系。
 
@@ -63,21 +63,21 @@ description: Pyhton多线程编程，多线程学习，线程与进程。
 
 ##二.Python多线程
 
-###1.python解释器
+###2.1  python解释器
 
 python解释器将源代码转换为字节码然后执行的过程，这里的解释执行是相对于编译执行而言。更多内容参考[**Python解释执行原理**](http://www.wangyuxiong.com/archives/51258)
 
-###2.python虚拟机
+###2.2  python虚拟机
 
 Python代码执行是由python虚拟机控制，在python虚拟机中同时只有一个线程执行，相当于单CPU运行多个进程，但是任意时刻只用一个进程在CPU中运行。
 
-###3.python全局解释器锁
+###2.3  python全局解释器锁
 
 对python虚拟机访问是通过python全局解释器锁(global interpreter lock , GIL)控制，实现相当于一把锁，在进程与线程概念中，存在着共享内存，其他线程必须等它结束，才能使用这一块内存。GIL就是锁住然后打开的不断循环的过程，用以防止多个线程同时读写某一块内存区域。
 
 ![](http://deliveryimages.acm.org/10.1145/960000/959339/7124f1.png)
 
-###4.time.sleep()演示进程工作
+###2.4  time.sleep()演示进程工作
 
     #!/usr/bin/env python
     # coding=utf-8
@@ -182,11 +182,85 @@ Python代码执行是由python虚拟机控制，在python虚拟机中同时只�
 
 这里介绍threading的Thread类，更多threading详尽文档[**16.2. threading — Higher-level threading interface**](https://docs.python.org/2/library/threading.html?highlight=threading#lock-objects)
 
-threading的Thread类,可以重写__init__()和run().
+    class threading.Thread(group=None, target=None, name=None, args=(), kwargs={})
+
+###4.1 Thread对象的参数解释：
+
+group 应为 None，这参数是为将来可能出现的 ThreadGroup 类准备的（现在还没有实现）
+
+target 为将被 run() 方法调用的可调用对象。如果是 None，那就意味着什么也不做
+
+name 是本线程的名字，默认会分配一个形如“Thread-N”的名字，其中 N 是一个十进制数
+
+args 是给 target 准备的非关键字参数
+
+kwargs 是给 target 准备的关键字参数
+
+daemon 用来设定线程的 daemon 属性，如果使用默认值（None），将从当前进程中继承
+
+如果 Thread 的子类重写了构造函数，那么一定要确保在子类构造函数的第一行先调用父类的构造函数（Thread.__init__()）
+
+
+>在创建了 Thread 对象后，通过调用它的 start() 方法，run() 方法的内容会在一个新线程里被执行。
+一旦一个线程开始执行，那么他就处于“alive”的状态，除非 run() 方法执行完毕，或引发了一个未处理的异常。Thread 对象的 is_alive() 方法可以用来检测对象当前的状态。线程A 可以调用线程B 的 join() 方法，调用后线程A 会被挂起，直到线程B 结束。每个线程都有自己的名字。可以在调用构造器时通过 name=None 来设定，或者实例化后通过 name 属性来访问.线程可以被标记为“daemon thread”，这表示主程序可以不管他们死活。。。我是说，当一个程序里只剩下“daemon thread”没有结束时，程序就会直接退出。这个标记可以通过对象的 setDaemon() 方法来设定，但一定要在调用 start() 之前。对象的 daemon 属性和 isDaemon() 方法都可以用来检查它的标记。Python 程序的初始线程叫做“main thread”，当然他肯定不是“daemon thread”（Daemon　可参考《Python核心编程２》守护线程，就是在进程退出时，不用等待这个线程退出。）
+
+###4.2　Thread 类的属性和方法：
+
+`start()`
+
+开始线程的执行
+
+本方法至多只能调用一次。它会在独立线程中执行 run() 方法
+
+如果对一个对象多次调用本方法，会引发 RuntimeError 异常
+
+`run()`
+
+包含了线程实际执行的内容
+
+本方法可以在子类中覆盖。否则默认调用传给构造器的 target 参数（和 args，kwargs 参数）
+
+常用操作如下：
+
+     def run(self):
+            apply(self.func,self.args)　＃应用apply函数
+            
+`join(timeout=None)`
+
+程序挂起，直到线程结束（正常结束，或引发未处理异常，或超出 timeout 的时间）。
+
+timeout 参数是一个以秒为单位的浮点数。当给出 timeout 参数时，因为 join() 方法总是返回 None，你应该随即调用 is_alive() 方法，来判断子线程到底是终结了，还是超时了。
+
+如果没有给出 timeout 参数，那么调用者的进程会一直阻塞直到本进程结束。
+
+一个线程可以被 join() 多次
+
+当调用 join() 方法可能引发死锁，或被调用者的进程还未 start() 时，都会引发一个 RuntimeError
+
+`getName() / setName()`
+
+前者用于返回线程名字，后者用于设置线程名字
+
+`is_alive()`
+
+返回本进程是否是 alive 状态
+
+`daemon`
+
+布尔值，标明本进程是否为“daemon thread”。一定要在 start() 被调用前设定，否则引发 RuntimeError。初始值继承自当前线程，因此从主线程创建的子线程默认都是 False，而从“daemon thread”创建的子线程默认都是 True
+当只剩下“daemon thread”为 alive 状态时，整个程序就会退出
+
+`isDaemon() / setDaemon()`
+
+为后向兼容而保留的方法，现在请直接访问 daemon 属性
+
+
+
+###4.3　执行方式
 
 以下用三种方式实现多线程，由可用性而言，推荐最后一种。
 
-方式一:创建Thread实例，传递一个函数
+**方式一:创建Thread实例，传递一个函数**
 
     #!/usr/bin/env python
     # coding=utf-8
@@ -207,7 +281,7 @@ threading的Thread类,可以重写__init__()和run().
         i.start()  # 启动所有
         i.join()    # 等待结束
         
-方式二：创建Thread实例，传递一个可调用的类对象
+**方式二：创建Thread实例，传递一个可调用的类对象**
 
     #!/usr/bin/env python
     # coding=utf-8
@@ -236,7 +310,7 @@ threading的Thread类,可以重写__init__()和run().
         i.start()
         i.join()
     
-方式三：从Thread派生出一个子类，创建这个子类的实例
+**方式三：从Thread派生出一个子类，创建这个子类的实例**
     
     #!/usr/bin/env python
     # coding=utf-8
@@ -266,15 +340,56 @@ threading的Thread类,可以重写__init__()和run().
         t.start()
         t.join()
 
+###4.4 　一个线程流程的简单演示
+
+线程有5种状态，状态转换的过程如下图所示：
+
+![](http://images.cnblogs.com/cnblogs_com/huxi/WindowsLiveWriter/Python_11F5/thread_stat_simple_3.png)
+
+图片来源[**Python线程指南**](http://www.cnblogs.com/huxi/archive/2010/06/26/1765808.html)
+
+下面是一个简单的例子
+
+    #!/usr/bin/env python
+    # coding=utf-8
+    import threading
+    from time import sleep
+    
+    class Mythead(threading.Thread):
+        def run(self):
+            for i in range(3):
+                sleep(1) # 挂起1s
+                ＃self.name是该线程的名字，默认会分配一个形如“Thread-N”的名字，其中 N 是一个十进制数
+                print u'线程:%s,索引%s' % (self.name,i)　　　
+    
+    if __name__ == '__main__':
+        for i in range(3):
+            t = Mythead()
+            t.start()
+
+运行结果为：
+
+    线程:Thread-1,索引0
+    线程:Thread-2,索引0
+    线程:Thread-3,索引0
+    线程:Thread-2,索引1
+    线程:Thread-3,索引1
+    线程:Thread-1,索引1
+    线程:Thread-2,索引2
+    线程:Thread-1,索引2
+    线程:Thread-3,索引2
+
+从上面的运行结果来看，多线程程序的执行顺序是不确定的。当执行到sleep语句时，线程被阻塞（Blocked）（满足阻塞条件）直到sleep结束（阻塞结束）后，线程进入就绪（Runnable）状态，等待调度，执行完run()之后线程就会死亡。
 
 
-##参考
+##五.参考
 [1.WIKI之进程](http://zh.wikipedia.org/wiki/%E8%BF%9B%E7%A8%8B)
 
 [2.深入分析Linux内核源码之进程和程序（Process and Program）](http://oss.org.cn/kernel-book/ch04/4.1.htm)
 
 [3.WIKI之线程](http://zh.wikipedia.org/wiki/%E7%BA%BF%E7%A8%8B)
 
+[4.Python的多线程编程模块 threading 参考](http://my.oschina.net/lionets/blog/194577)
 
 
 
