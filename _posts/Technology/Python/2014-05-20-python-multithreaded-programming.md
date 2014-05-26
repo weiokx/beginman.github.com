@@ -381,6 +381,66 @@ timeout 参数是一个以秒为单位的浮点数。当给出 timeout 参数时
 
 从上面的运行结果来看，多线程程序的执行顺序是不确定的。当执行到sleep语句时，线程被阻塞（Blocked）（满足阻塞条件）直到sleep结束（阻塞结束）后，线程进入就绪（Runnable）状态，等待调度，执行完run()之后线程就会死亡。
 
+###4.5 自定义线程名称
+
+从上面代码可以看出，线程名称默认会分配一个形如“Thread-N”的名字，其中 N 是一个十进制数。当然我们也可以自定义，如下：
+
+    #!/usr/bin/env python
+    # coding=utf-8
+    import threading
+    from time import sleep
+    def foo():
+        print threading.currentThread().getName(),'starting..'　　　＃currentThread()获取当前线程，getName()返回线程名称
+        sleep(2)
+        print threading.currentThread().getName(),'Exiting..'
+    
+    f1 = threading.Thread(name='mythread', target=foo)                 # 设置线程名字为mythread.
+    f2 = threading.Thread(target=foo)
+    
+    f1.start()
+    f2.start()
+
+输出结果如下：（**注意：结果是无序的，不确定的**）
+
+    mythread starting..
+    Thread-1 starting..
+    Thread-1 Exiting..
+    mythread Exiting..
+
+**`logging`打印输出：**
+
+实际项目中往往不会让你print,而是利用logging,它能通过格式化字符串(`%(threadName)s`)支持线程日志的输出。下面是改写上面的程序：
+
+    #!/usr/bin/env python
+    # coding=utf-8
+    import threading
+    from time import sleep
+    import logging
+    ＃配置logging，以“模式名/线程名字(10个字符)/信息”方式输出。　
+    logging.basicConfig(
+        level = logging.DEBUG,
+        format = '[%(levelname)s](%(threadName)-10s) %(message)s'
+        )
+    def foo():
+        logging.debug('Starting...')
+        sleep(2)
+        logging.debug('Exiting...')
+    
+    threading.Thread(name='mythread',target=foo).start()
+    threading.Thread(target=foo).start()
+
+结果为：
+
+    [DEBUG](mythread  ) Starting...
+    [DEBUG](Thread-1  ) Starting...
+    [DEBUG](mythread  ) Exiting...
+    [DEBUG](Thread-1  ) Exiting...
+
+在改进一点就是写入到log日志里面去。
+
+###4.6 设置守护线程
+这里要区分`守护进程`与`守护线程`的概念，
+
 
 ##五.参考
 [1.WIKI之进程](http://zh.wikipedia.org/wiki/%E8%BF%9B%E7%A8%8B)
